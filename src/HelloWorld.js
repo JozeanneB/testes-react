@@ -2,11 +2,15 @@
  * Created by jozeanne on 20/02/17.
  */
 import React, { Component } from 'react';
+import AppleZero from './containers/AppleZero'
+import AppleState from './containers/AppleState'
+import { connect } from 'react-redux';
+
 
 class HelloWorld extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { date: new Date(), number: 2 };
+  constructor() {
+    super();
+    this.state = { date: new Date()};
     // This binding is necessary to make `this` work in the callback
     this.handleClick = this.handleClick.bind(this);
   }
@@ -22,16 +26,13 @@ class HelloWorld extends Component {
     clearInterval(this.timerID);
   }
 
-  plusOne(num) {
-    return num + 1;
-  }
-
   tick() {
     this.setState({
       date: new Date(),
-      number: this.plusOne(this.state.number)
     });
+    this.props.dispatch({ type: 'ADD_APPLE' });
   }
+
 
   handleClick() {
     this.setState({
@@ -43,14 +44,16 @@ class HelloWorld extends Component {
     return (
         <div>
           <h1>HelloWorld</h1>
-          <h2>It is {this.state.date.toLocaleTimeString()}. And I have {this.state.number} apples.</h2>
-          <button onClick={this.handleClick}>
-            <b> Eat all apples </b>
-          </button>
+          <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+          <AppleState/>
+          <AppleZero/>
         </div>
 
     );
   }
 }
+
+HelloWorld = connect()(HelloWorld);
+
 
 export default HelloWorld;
