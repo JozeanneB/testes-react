@@ -2,8 +2,8 @@
  * Created by jozeanne on 20/02/17.
  */
 import React, { Component } from 'react';
-import AppleZero from './containers/AppleZero'
-import AppleState from './containers/AppleState'
+import AppleZero from '../containers/AppleZero'
+import AppleState from '../containers/AppleState'
 import { connect } from 'react-redux';
 
 
